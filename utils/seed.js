@@ -20,7 +20,6 @@ module.exports = {
 
         CREATE TABLE users (
             user_id SERIAL PRIMARY KEY,
-            name VARCHAR(50),
             email VARCHAR(100),
             password VARCHAR(100)
         );
@@ -45,8 +44,8 @@ module.exports = {
             ingredient_id INTEGER REFERENCES ingredients(ingredient_id)
         );
 
-        INSERT INTO users (name, email, password)
-        VALUES('Ben Broad', 'Broad0601@gmail.com', 'abcdefg');
+        INSERT INTO users (email, password)
+        VALUES('Broad0601@gmail.com', 'abcdefg');
 
         INSERT INTO cocktails (user_id,title,description,recipe, image)
         VALUES(1, 'Manhattan', 'Classic whiskey drink. one of the oldest cocktails in America', '3 parts whiskey, 1 part sweet vermouth, splash of bitters, garnish with cherry', '${'./images/Manhattan.jpg'}'),

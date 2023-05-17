@@ -1,6 +1,6 @@
-require('dotenv').config()
-const {CONNECTION_STRING} = process.env
-const Sequelize = require('sequelize')
+require('dotenv').config();
+const {CONNECTION_STRING} = process.env;
+const Sequelize = require('sequelize');
 const sequelize = new Sequelize(CONNECTION_STRING, {
     dialect:'postgres',
     dialectOptions: {
@@ -8,7 +8,7 @@ const sequelize = new Sequelize(CONNECTION_STRING, {
             rejectUnauthorized: false
         }
     }
-})
+});
 
 module.exports = {
     // get all cocktails and their ingredients 
