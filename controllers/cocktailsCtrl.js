@@ -14,7 +14,7 @@ module.exports = {
     // get all cocktails and their ingredients 
     // get just cocktails and descriptions
     getAllCocktails: (req, res) => {
-        let query = `SELECT title, description, image FROM cocktails;`
+        let query = `SELECT title, description, image, cocktail_id FROM cocktails;`
         sequelize.query(query)
         .then(dbRes => res.status(200).send(dbRes[0]))
         .catch(err => console.log(err))
@@ -32,14 +32,14 @@ module.exports = {
         let {id} = req.params
         console.log(id)
         let query = `
-        SELECT c.title, c.description, c.recipe, c.image, ARRAY_AGG (i.name) ingredients FROM cocktails AS c
+        SELECT c.title, c.cocktail_id, c.description, c.recipe, c.image, ARRAY_AGG (i.name) ingredients FROM cocktails AS c
         JOIN cocktailingredients as ci 
         ON ci.cocktail_id = c.cocktail_id
         JOIN ingredients AS i
         ON ci.ingredient_id = i.ingredient_id
         WHERE c.cocktail_id = ${id}
-        GROUP BY c.title, c.description, c.recipe, c.image
-        ORDER BY c.title, c.description, c.recipe, c.image
+        GROUP BY c.title, c.cocktail_id, c.description, c.recipe, c.image
+        ORDER BY c.title, c.cocktail_id, c.description, c.recipe, c.image
         ;`
         sequelize.query(query)
         .then(dbRes => res.status(200).send(dbRes[0]))
