@@ -60,11 +60,11 @@ module.exports = {
     },
     // add cocktail
     addCocktail: (req, res) => {
-        let {user_id} = req.body
+        // let {user_id} = req.body
         let {title, description, recipe, image} = req.body
         let query = `
-        INSERT INTO cocktails (user_id, title, description, recipe, image)
-        VALUES(${user_id}, '${title}', '${description}', '${recipe}', '${image}') RETURNING *;`
+        INSERT INTO cocktails (title, description, recipe, image)
+        VALUES('${title}', '${description}', '${recipe}', '${image}') RETURNING *;`
         sequelize.query(query)
         .then(dbRes => res.status(200).send(dbRes[0]))
         .catch(err => console.log(err))
@@ -92,7 +92,11 @@ module.exports = {
     // delete cocktail 
     deleteCocktail: (req, res) => {
         let {id} = req.params
-        let query = `DELETE FROM cocktails WHERE cocktail_id = ${id}`
+        let query = `
+        ALTER TABLE cocktailingredients DISABLE TRIGGER ALL;
+        DELETE FROM cocktails WHERE cocktail_id = ${id};
+        ALTER TABLE cocktailingredients ENABLE TRIGGER ALL;
+        `
         sequelize.query(query)
         .then(dbRes => res.status(200).send(dbRes[0]))
         .catch(err => console.log(err))

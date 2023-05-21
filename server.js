@@ -23,9 +23,9 @@ app.get('/cocktails', getAllCocktails)
 app.get('/ingredients', getIngredients)
 app.get('/cocktails/:id', getCocktailDetails)
 app.post('/ingredients', addIngredient)
-app.post('/cocktails', isAuthenticated, addCocktail)
+app.post('/cocktails', addCocktail)
 app.put('/cocktails/:id', isAuthenticated, editCocktail)
-app.delete('/cocktails/:id', isAuthenticated, deleteCocktail)
+app.delete('/cocktails/:id', deleteCocktail)
 app.delete('/ingredients/:id', isAuthenticated, deleteIngredient)
 
 

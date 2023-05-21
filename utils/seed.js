@@ -9,7 +9,7 @@ const sequelize = new Sequelize(CONNECTION_STRING, {
         }
     }
 })
-
+//  user_id INTEGER REFERENCES users(user_id),
 module.exports = {
     seed: (req,res) => {
         sequelize.query(`
@@ -26,7 +26,6 @@ module.exports = {
 
         CREATE TABLE cocktails (
             cocktail_id SERIAL PRIMARY KEY,
-            user_id INTEGER REFERENCES users(user_id),
             title VARCHAR(100),
             description TEXT,
             recipe TEXT,
@@ -47,13 +46,13 @@ module.exports = {
         INSERT INTO users (email, password)
         VALUES('Broad0601@gmail.com', 'abcdefg');
 
-        INSERT INTO cocktails (user_id,title,description,recipe, image)
-        VALUES(1, 'Manhattan', 'Classic whiskey drink. one of the oldest cocktails in America', '3 parts whiskey, 1 part sweet vermouth, splash of bitters, garnish with cherry', 'https://drive.google.com/uc?export=download&id=1BFEBwqXKLOixaTlpd5KGw-Rq7F-_EyU8'),
-        (1,'Old Fashion', 'Classic Whiskey drink known for its sweeter taste', '3 parts whiskey, muttle orange, bitters, and cherry in small rocks glass, top with soda', 'https://drive.google.com/uc?export=download&id=1Y78aWzYQFLRekfXFzOoG84Kxt3R8yUbR'),
-        (1,'Margarita', 'A favorite for all pallets', '3 parts tequila, 1 part lime, 1 part simple syrup, garnish with lime', 'https://drive.google.com/uc?export=download&id=18FPbzjgrQA6url7m-hsoHISFVCW_Bq_p'),
-        (1,'Mojito','Refreshness inbound', '3 parts silver rum, 5 mint leafs muttled, simple syrup, garnish with lime', '${'./images/Mojito.jpg'}'),
-        (1,'Moscow Mule', 'A christmas traditon', '3 parts vodka, 1part lime juice, top with ginger beer, garnish with lime', 'https://drive.google.com/file/d/1exVogqrjxfWtulOSqvQTlkUQYAzk07Xv/view?usp=sharing'),
-        (1, 'Cosmopolitan', 'Martini for everyone', '3 parts vodka, 1 part tripple sec, 1 part cranberry, splash of lime', 'https://drive.google.com/uc?export=download&id=1FX0o-Z8lzbagNFxftc4xidZd9aWMwzbJ');
+        INSERT INTO cocktails (title,description,recipe, image)
+        VALUES('Manhattan', 'Classic whiskey drink. one of the oldest cocktails in America', '3 parts whiskey, 1 part sweet vermouth, splash of bitters, garnish with cherry', 'https://drive.google.com/uc?export=download&id=1BFEBwqXKLOixaTlpd5KGw-Rq7F-_EyU8'),
+        ('Old Fashion', 'Classic Whiskey drink known for its sweeter taste', '3 parts whiskey, muttle orange, bitters, and cherry in small rocks glass, top with soda', 'https://drive.google.com/uc?export=download&id=1Y78aWzYQFLRekfXFzOoG84Kxt3R8yUbR'),
+        ('Margarita', 'A favorite for all pallets', '3 parts tequila, 1 part lime, 1 part simple syrup, garnish with lime', 'https://drive.google.com/uc?export=download&id=18FPbzjgrQA6url7m-hsoHISFVCW_Bq_p'),
+        ('Mojito','Refreshness inbound', '3 parts silver rum, 5 mint leafs muttled, simple syrup, garnish with lime', ''),
+        ('Moscow Mule', 'A christmas traditon', '3 parts vodka, 1part lime juice, top with ginger beer, garnish with lime', 'https://drive.google.com/file/d/1exVogqrjxfWtulOSqvQTlkUQYAzk07Xv/view?usp=sharing'),
+        ('Cosmopolitan', 'Martini for everyone', '3 parts vodka, 1 part tripple sec, 1 part cranberry, splash of lime', 'https://drive.google.com/uc?export=download&id=1FX0o-Z8lzbagNFxftc4xidZd9aWMwzbJ');
 
         INSERT INTO ingredients (name)
         VALUES
