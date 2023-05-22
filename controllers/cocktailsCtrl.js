@@ -73,10 +73,9 @@ module.exports = {
     // edit cocktail 
     editCocktail: (req, res) => {
         let {id} = req.params
-        let {user_id, title, description, recipe, image} = req.body
+        let {title, description, recipe, image} = req.body
         let query = `
         UPDATE cocktails SET
-        user_id = ${user_id},
         title = '${title}',
         description = '${description}',
         recipe = '${recipe}',
@@ -94,6 +93,7 @@ module.exports = {
         let {id} = req.params
         let query = `
         ALTER TABLE cocktailingredients DISABLE TRIGGER ALL;
+        DELETE FROM cocktailingredients WHERE cocktail_id= ${id};
         DELETE FROM cocktails WHERE cocktail_id = ${id};
         ALTER TABLE cocktailingredients ENABLE TRIGGER ALL;
         `
@@ -104,7 +104,16 @@ module.exports = {
     // delete ingredient
     deleteIngredient: (req,res) => {
         let {id} = req.params
-        let query = `DELETE FROM ingredients WHERE ingredient_id=${id}`
+        let query = `
+        ALTER TABLE cocktailingredients DISABLE TRIGGER ALL;
+        
+        DELETE FROM cocktailingredients WHERE ingredient_id=${id};
+        DELETE FROM ingredients WHERE ingredient_id=${id};
+        ALTER TABLE cocktailingredients ENABLE TRIGGER ALL;
+
+     
+        `
+        
         sequelize.query(query)
         .then(dbRes => res.status(200).send(dbRes[0]))
         .catch(err => console.log(err))
