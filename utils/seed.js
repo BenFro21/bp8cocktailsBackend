@@ -47,7 +47,7 @@ module.exports = {
         VALUES('Broad0601@gmail.com', 'abcdefg');
 
         INSERT INTO cocktails (title,description,recipe, image)
-        VALUES('Manhattan', 'Classic whiskey drink. one of the oldest cocktails in America', '3 parts whiskey, 1 part sweet vermouth, splash of bitters, garnish with cherry', 'https://drive.google.com/uc?export=download&id=1BFEBwqXKLOixaTlpd5KGw-Rq7F-_EyU8'),
+        VALUES('Manhattan', 'One of the oldest cocktails in America', '3 parts whiskey, 1 part sweet vermouth, splash of bitters, garnish with cherry', 'https://drive.google.com/uc?export=download&id=1BFEBwqXKLOixaTlpd5KGw-Rq7F-_EyU8'),
         ('Old Fashion', 'Classic Whiskey drink known for its sweeter taste', '3 parts whiskey, muttle orange, bitters, and cherry in small rocks glass, top with soda', 'https://drive.google.com/uc?export=download&id=1Y78aWzYQFLRekfXFzOoG84Kxt3R8yUbR'),
         ('Margarita', 'A favorite for all pallets', '3 parts tequila, 1 part lime, 1 part simple syrup, garnish with lime', 'https://drive.google.com/uc?export=download&id=18FPbzjgrQA6url7m-hsoHISFVCW_Bq_p'),
         ('Mojito','Refreshness inbound', '3 parts silver rum, 5 mint leafs muttled, simple syrup, garnish with lime', 'https://drive.google.com/uc?export=download&id=10S-XzWboyTEwFEAXI_tVTPrrvlQcfKB7'),
@@ -69,8 +69,8 @@ module.exports = {
         ('Whiskey'),
         ('Vodka'),
         ('Tequila'),
-        ('Burbon'),
-        ('Tripple Sec'),
+        ('Bourbon'),
+        ('Triple Sec'),
         ('Gin');
 
         INSERT INTO cocktailIngredients (cocktail_id, ingredient_id)
